@@ -12,8 +12,5 @@ mkdir -p ~/.config/nvim
 cp dot_files/init.vim ~/.vimrc
 ln -s ~/.vimrc ~/.config/nvim/init.vim
 pip3 install --user neovim
-# clone into ~/.fzf
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-# run install command
-~/.fzf/install
-
+git config --global core.editor "vim"
+cp .bash_aliases ~/.bash_aliases
