@@ -1,6 +1,8 @@
+cd ~
 sudo apt-get install fuse libfuse2 python3-pip ack-grep -y
 sudo apt install neovim
 sudo apt install tmux
+sudo apt install thunderbird
 curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 touch ~/.vimrc
@@ -14,3 +16,4 @@ pip3 install --user neovim
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 # run install command
 ~/.fzf/install
+
