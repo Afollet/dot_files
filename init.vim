@@ -1,24 +1,27 @@
 call plug#begin()
- " Plugin Section
- Plug 'dracula/vim'
+ " Plug 'dracula/vim'
+ " Visual
+ Plug 'morhetz/gruvbox'
+ Plug 'vim-airline/vim-airline'
+ Plug 'vim-airline/vim-airline-themes'
+ " Stuff I like
  Plug 'ryanoasis/vim-devicons'
  Plug 'mhinz/vim-startify'
  Plug 'junegunn/fzf'
- Plug 'tpope/vim-surround'
- Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
- Plug 'roxma/nvim-yarp'
- Plug 'roxma/vim-hug-neovim-rpc'
- Plug 'zchee/deoplete-jedi'
- Plug 'rbgrouleff/bclose.vim'
  Plug 'francoiscabrol/ranger.vim'
-call plug#end()
+ " React and typscript
+ " Plug 'HerringtonDarkholme/yats.vim'
+ call plug#end()
 
+let g:airline_theme='simple'
 let g:deoplete#enable_at_startup = 1
 map <leader>F :RangerNewTab<CR> :inoremap ii <Esc>
 :inoremap jk <Esc>
 :inoremap kj <Esc>
 :vnoremap jk <Esc>
 :vnoremap kj <Esc>
+nnoremap <C-Left> :tabprevious<CR>
+nnoremap <C-Right> :tabnext<CR>
 :map <leader>z :FZF ~ <CR>
 :map <leader>t :tabnew <CR>
 nmap <leader>s :split term
@@ -36,7 +39,8 @@ nnoremap <leader>Y "+y$
  endif
  syntax enable
 " colorscheme evening
-colorscheme dracula
+"colorscheme dracula
+colorscheme gruvbox
 " open new split panes to right and below
 
 set splitright
@@ -67,4 +71,19 @@ set ttyfast                 " Speed up scrolling in Vim
 " set noswapfile            " disable creating swap file
 " set backupdir=~/.cache/vim " Directory to store backup files.
 
+" Set internal encoding of vim, not needed on neovim, since coc.nvim using some
+" unicode characters in the file autoload/float.vim
+set encoding=utf-8 " TextEdit might fail if hidden is not set.  set hidden Some servers have issues with backup files, see #649.  set nobackup set nowritebackup Give more space for displaying messages.  set cmdheight=2 Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable delays and poor user experience.  set updatetime=300
+
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+if has("nvim-0.5.0") || has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
 
