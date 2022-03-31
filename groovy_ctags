@@ -1,6 +1,6 @@
 --langdef=groovy
 --langmap=groovy:.groovy
---regex-groovy=/^([a-zA-z0-9_]+)[ ]*=[ ]*\{/\1/m,method/
+--regex-groovy=/^([a-zA-z0-9_]+)[ ]*=[ ]*(segment )?\{/\1/m,method/
 --regex-groovy=/^[ \t]*package[ \t]+([a-zA-Z0-9.-_]+)/\1/p,package/
 --regex-groovy=/^[ \t]*(private|public)?[ \t]*(abstract|final|static)?[ \t]*class[ \t]+([A-Za-z0-9_]+)/\3/c,class/
 --regex-groovy=/^[ \t]*(private|public)?[ \t]*interface[ \t]+([A-Za-z0-9_]+)/\2/i,interface/
