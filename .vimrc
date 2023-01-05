@@ -94,3 +94,7 @@ else
   set signcolumn=yes
 endif
 
+au BufNewFile,BufRead *.nf set filetype=groovy
+au BufNewFile,BufRead *.nf.test set filetype=groovy
+au BufNewFile,BufRead nextflow.config set filetype=groovy
+au BufNewFile,BufRead bpipe.config set filetype=groovy
