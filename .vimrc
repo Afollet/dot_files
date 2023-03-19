@@ -39,6 +39,25 @@ nnoremap <leader>y "+y
 vnoremap <leader>y "+y
 nnoremap <leader>Y "+y$
 
+function Escape()
+  if pumvisible()
+    return "\<c-e>"
+  else
+    call feedkeys("\<esc>","nit")
+    return ""
+  endif
+endfunction
+"
+" Navigate the complete menu items like CTRL+n / CTRL+p would.
+inoremap <expr> <Tab> pumvisible() ? "<C-n>" :"<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "<C-p>" :"<S-Tab>"
+
+" Select the complete menu item like CTRL+y would.
+inoremap <expr> <CR> pumvisible() ? "<C-y>" :"<CR>"
+
+" Cancel the complete menu item like CTRL+e would.
+inoremap <expr> <esc> pumvisible() ? "<C-e>" : "Escape()"
+"
 " color schemes
  if (has("termguicolors"))
  set termguicolors
