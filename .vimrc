@@ -47,6 +47,12 @@ function Escape()
     return ""
   endif
 endfunction
+
+" For local replace
+nnoremap gr gd[{V%::s/<C-R>///gc<left><left><left>
+
+" For global replace
+nnoremap gR gD:%s/<C-R>///gc<left><left><left>
 "
 " Navigate the complete menu items like CTRL+n / CTRL+p would.
 inoremap <expr> <Tab> pumvisible() ? "<C-n>" :"<Tab>"
