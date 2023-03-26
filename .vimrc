@@ -39,6 +39,13 @@ nnoremap <leader>y "+y
 vnoremap <leader>y "+y
 nnoremap <leader>Y "+y$
 
+"Copilot mappings for vim
+
+inoremap <silent><script><expr> <PageUp> copilot#Previous()
+inoremap <silent><script><expr> <PageDown> copilot#Next()
+inoremap <silent><script><expr> <Home> copilot#Accept()
+inoremap <silent><script><expr> <End> copilot#Dismiss()
+
 
 function Escape()
   if pumvisible()
