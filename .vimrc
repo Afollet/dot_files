@@ -39,6 +39,16 @@ nnoremap <leader>y "+y
 vnoremap <leader>y "+y
 nnoremap <leader>Y "+y$
 
+"Run command based on filetype!
+"
+autocmd FileType groovy nnoremap <leader>r :w<CR>:!groovy %<CR>
+autocmd FileType py nnoremap <leader>r :w<CR>:!python %<CR>
+
+" Run pylint on save for Python files
+autocmd BufWritePost *.py silent !pylint %
+
+" Run npm-groovy-linter on save for Groovy files
+autocmd BufWritePost *.groovy silent !npm-groovy-lint -l warning warning --failon error %
 "Copilot mappings for vim
 
 inoremap <silent><script><expr> <PageUp> copilot#Previous()
