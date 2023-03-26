@@ -39,6 +39,7 @@ nnoremap <leader>y "+y
 vnoremap <leader>y "+y
 nnoremap <leader>Y "+y$
 
+
 function Escape()
   if pumvisible()
     return "\<c-e>"
@@ -62,7 +63,7 @@ inoremap <expr> <S-Tab> pumvisible() ? "<C-p>" :"<S-Tab>"
 inoremap <expr> <CR> pumvisible() ? "<C-y>" :"<CR>"
 
 " Cancel the complete menu item like CTRL+e would.
-inoremap <expr> <esc> pumvisible() ? "<C-e>" : "Escape()"
+inoremap <expr> <esc> pumvisible() ? "<C-e>" : Escape()
 "
 " color schemes
  if (has("termguicolors"))
