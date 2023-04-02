@@ -12,6 +12,7 @@ call plug#begin()
  " Plug 'HerringtonDarkholme/yats.vim'
 call plug#end()
 
+map <SPACE> <leader>
 set expandtab
 set ts=4 sw=4
 set guifont=fonts-hack-ttf
@@ -26,8 +27,6 @@ nnoremap <C-Left> :tabprevious<CR>
 nnoremap <C-Right> :tabnext<CR>
 nnoremap <leader>a :! git add %
 nnoremap <leader>f :vim <C-R>" * <CR>
-nnoremap <F12> :! ./% <CR>
-nnoremap <F6> :exec '!'.getline('.') <CR>
 :map <C-t> :NERDTree <CR>
 :map <leader>t :tabnew <CR>
 :map <leader>gd :w !diff % - <CR>
@@ -41,14 +40,16 @@ nnoremap <leader>Y "+y$
 
 "Run command based on filetype!
 "
-autocmd FileType groovy nnoremap <leader>r :w<CR>:!groovy %<CR>
-autocmd FileType py nnoremap <leader>r :w<CR>:!python %<CR>
+autocmd FileType groovy nnoremap <F10> :w<CR>:!groovy %<CR>
+autocmd FileType python nnoremap <F10> :w<CR>:!python %<CR>
+autocmd FileType bash nnoremap <F10> :w<CR>:!bash %<CR>
+autocmd FileType md nnoremap <F10> :w<CR>:!bat %<CR>
 
+autocmd FileType python nnoremap <F8> :w<CR>:!pylint %<CR>
 " Run pylint on save for Python files
-autocmd BufWritePost *.py silent !pylint %
-
-" Run npm-groovy-linter on save for Groovy files
-autocmd BufWritePost *.groovy silent !npm-groovy-lint -l warning warning --failon error %
+autocmd BufWritePost *.py !pylint %
+autocmd BufWritePost *.groovy !npm-groovy-lint -l warning warning --failon error %
+"
 "Copilot mappings for vim
 
 inoremap <silent><script><expr> <PageUp> copilot#Previous()
@@ -67,10 +68,10 @@ function Escape()
 endfunction
 
 " For local replace
-nnoremap gr gd[{V%::s/<C-R>///gc<left><left><left>
+nnoremap gr gd[{V%::s/\<C-R>///gc<left><left><left>
 
 " For global replace
-nnoremap gR gD:%s/<C-R>///gc<left><left><left>
+nnoremap gR gD:%s/\<C-R>///gc<left><left><left>
 "
 " Navigate the complete menu items like CTRL+n / CTRL+p would.
 inoremap <expr> <Tab> pumvisible() ? "<C-n>" :"<Tab>"
@@ -136,6 +137,27 @@ if has("nvim-0.5.0") || has("patch-8.1.1564")
 else
   set signcolumn=yes
 endif
+
+function! AddGngsTags()
+    let gngs_tags = "/home/alex/vcgs/groovy-ngs-utils/src/tags"
+    if filereadable(gngs_tags)
+      execute "set tags+=" . gngs_tags
+    endif
+endfunction
+
+function! AddTags()
+  let cwd = getcwd()
+  if cwd =~# '/home/alex/vcgs/giphub/routes/**'
+    let camel_tags = "/home/alex/vcgs/giphub/camelpack/src/tags"
+    if filereadable(camel_tags)
+      execute "set tags+=" . camel_tags
+    endif
+    let gngs_tags = "/home/alex/vcgs/groovy-ngs-utils/src/tags"
+    if filereadable(gngs_tags)
+      execute "set tags+=" . gngs_tags
+    endif
+  endif
+endfunction
 
 au BufNewFile,BufRead *.nf set filetype=groovy
 au BufNewFile,BufRead *.nf.test set filetype=groovy
