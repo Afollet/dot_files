@@ -3,4 +3,4 @@
 --langmap=nextflow:.groovy
 --regex-nextflow=/^[ \t]*process[ \t]+([a-zA-Z0-9._-]+)[ \t]*\{/\1/p,process/
 --regex-nextflow=/^[ \t]*workflow[ \t]+([a-zA-Z0-9._-]+)[ \t]*\{/\1/w,workflow/
-
+--regex-nextflow=/^[ \t]*def[ \t]+([a-zA-Z0-9._-]+)[ \t]*=/\1/v,variable/
