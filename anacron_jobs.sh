@@ -12,5 +12,5 @@ then
     sudo apt-get install anacron
 fi
 
-echo '@weekly	100	clamscan	freshclam && sudo clamscan -i -r /home/alex >> /home/alex/clam_scan_logs' >> /etc/crontab
+echo '7	100	clamscan	clamscan -i -r /home/alex >> /home/alex/clam_scan_logs' >> /etc/anacrontab
 
