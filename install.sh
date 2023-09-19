@@ -6,7 +6,7 @@ set -x
 cd ~
 #sudo apt update
 sudo apt-get install fuse libfuse2 python3-pip ack-grep htop curl git -y 
-sudo apt install tig neovim thunderbird python3-neovim kitty autojump feh ranger xclip pigz gnome-tweaks parallel moreutils -y
+sudo apt install tig neovim thunderbird python3-neovim kitty autojump feh ranger xclip pigz gnome-tweaks parallel moreutils batcat xdotools -y
 sudo snap install slack chromium zoom
 
 python3 -m pip install pyvenv
@@ -41,3 +41,21 @@ mkdir -p ~/.config/kitty
 cp ~/pprojects/dot_files/kitty.conf ~/.config/kitty/
 
 cp ~/pprojects/dot_files/rc.conf ~/.config/ranger/rc.conf
+
+# Add Docker's official GPG key:
+sudo apt-get update
+sudo apt-get install ca-certificates curl gnupg
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+
+# Add the repository to Apt sources:
+echo \
+  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+
+
